@@ -1,19 +1,34 @@
 -- WoW Farmer Data Manager Lua File
 -- This file handles the management of data, including saving, loading, and calculating moving averages for farming drop rates.
 
+-- Require DefaultData
+require("DefaultData")
+
 -- Declare the DataManager table
 DataManager = {}
 
 -- Load SavedVariables
 function DataManager:Load()
-    if not WoWFarmerSaved then
-        WoWFarmerSaved = {
+    if not WoWFarmerCharSaved then
+        -- Create a new data table for the character and copy the default drop rates
+        WoWFarmerCharSaved = {
             dropRates = {},
             sessions = {}
         }
+
+        -- Copy pre-populated data from DefaultData.lua
+        for itemID, itemInfo in pairs(DefaultData.items) do
+            WoWFarmerCharSaved.dropRates[itemID] = {
+                sessions = {},
+                movingAverage = itemInfo.defaultDropRate
+            }
+        end
+
+        print("WoW Farmer data initialized with default values.")
     end
-    self.data = WoWFarmerSaved
-    print("WoW Farmer data loaded.")
+
+    self.data = WoWFarmerCharSaved
+    print("WoW Farmer data loaded for the character.")
 end
 
 -- Save session data to update drop rates
@@ -52,12 +67,12 @@ end
 
 -- Get the default drop rate for an item (used if no player data is available)
 function DataManager:GetDefaultDropRate(itemID)
-    -- Placeholder for default drop rates
-    local defaultRates = {
-        [2589] = 15,  -- Linen Cloth: 15 stacks per hour
-        [2592] = 8,   -- Wool Cloth: 8 stacks per hour
-    }
-    return defaultRates[itemID] or 0
+    local itemData = DefaultData.items[itemID]
+    if itemData then
+        return itemData.defaultDropRate
+    else
+        return 0  -- Return 0 if the item is not found in the default data
+    end
 end
 
 -- Utility function to clear session data (for testing or resetting purposes)
@@ -66,9 +81,4 @@ function DataManager:ClearData()
     print("All session data cleared.")
 end
 
--- Add comments to explain each function
--- The Load function initializes the data by loading it from SavedVariables.
--- The SaveSession function records the current session's data, updating the moving average for an item.
--- The GetDropRate function returns the current moving average for an item, falling back on default values if needed.
--- The GetDefaultDropRate function provides a default drop rate if no player-specific data is available.
--- The ClearData function allows resetting all stored session data, useful for testing or starting fresh.
+return DataManager
