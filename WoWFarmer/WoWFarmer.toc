@@ -1,4 +1,4 @@
-## Interface: 30400
+## Interface: 40401
 ## Title: WoW Farmer
 ## Notes: Optimize farming sessions by tracking profitability and drop rates.
 ## Author: Ryan Stickle
