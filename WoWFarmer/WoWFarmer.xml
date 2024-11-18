@@ -87,4 +87,79 @@
             </ScrollChild>
         </ScrollFrame>
     </Frame>
+    <!-- Settings Frame -->
+<Frame name="WoWFarmerSettingsFrame" parent="UIParent" movable="true" resizable="false" enableMouse="true" hidden="true">
+    <Size>
+        <AbsDimension x="300" y="200"/>
+    </Size>
+    <Anchors>
+        <Anchor point="CENTER"/>
+    </Anchors>
+    <Backdrop bgFile="Interface/Tooltips/UI-Tooltip-Background" edgeFile="Interface/Tooltips/UI-Tooltip-Border" tile="true">
+        <EdgeSize>
+            <AbsValue val="10"/>
+        </EdgeSize>
+        <BackgroundInsets>
+            <AbsInset left="4" right="4" top="4" bottom="4"/>
+        </BackgroundInsets>
+        <BackgroundColor r="0" g="0" b="0" a="0.8"/>
+    </Backdrop>
+
+    <!-- Title -->
+    <FontString name="WoWFarmerSettingsTitle" inherits="GameFontNormal" justifyH="CENTER">
+        <Size>
+            <AbsDimension x="280" y="20"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="TOP" x="0" y="-10"/>
+        </Anchors>
+        <Text>WoW Farmer Settings</Text>
+    </FontString>
+
+    <!-- Undercut Value Slider -->
+    <Slider name="WoWFarmerUndercutSlider" minValue="0" maxValue="15" valueStep="0.5" orientation="HORIZONTAL">
+        <Size>
+            <AbsDimension x="200" y="20"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOP" relativePoint="TOP" x="0" y="-50"/>
+        </Anchors>
+        <Backdrop bgFile="Interface/Buttons/UI-SliderBar-Background"/>
+        <ThumbTexture file="Interface/Buttons/UI-SliderBar-Button-Horizontal"/>
+    </Slider>
+    <FontString name="WoWFarmerUndercutLabel" inherits="GameFontNormal">
+        <Anchors>
+            <Anchor point="TOP" relativeTo="WoWFarmerUndercutSlider" relativePoint="BOTTOM" x="0" y="-5"/>
+        </Anchors>
+        <Text>Max Undercut Percentage: </Text>
+    </FontString>
+
+    <!-- Save Button -->
+    <Button name="WoWFarmerSaveSettingsButton" inherits="UIPanelButtonTemplate">
+        <Size>
+            <AbsDimension x="80" y="22"/>
+        </Size>
+        <Anchors>
+            <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" x="20" y="20"/>
+        </Anchors>
+        <Text>Save</Text>
+        <Scripts>
+            <OnClick>SettingsManager:SaveFromUI()</OnClick>
+        </Scripts>
+    </Button>
+
+    <!-- Cancel Button -->
+    <Button name="WoWFarmerCancelSettingsButton" inherits="UIPanelButtonTemplate">
+        <Size>
+            <AbsDimension x="80" y="22"/>
+        </Size>
+        <Anchors>
+            <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-20" y="20"/>
+        </Anchors>
+        <Text>Cancel</Text>
+        <Scripts>
+            <OnClick>WoWFarmer_HideSettings()</OnClick>
+        </Scripts>
+    </Button>
+</Frame>
 </Ui>
