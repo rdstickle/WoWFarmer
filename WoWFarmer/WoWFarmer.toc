@@ -12,3 +12,4 @@ WoWFarmer.lua
 SessionManager.lua
 UIHandler.lua
 DataManager.lua
+SettingsManager.lua
