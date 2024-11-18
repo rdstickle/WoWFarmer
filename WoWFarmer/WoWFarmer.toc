@@ -1,7 +1,7 @@
 ## Interface: 30400
 ## Title: WoW Farmer
 ## Notes: Optimize farming sessions by tracking profitability and drop rates.
-## Author: [Your Name]
+## Author: Ryan Stickle
 ## Version: 1.0.0
 ## SavedVariables: WoWFarmerSaved
 ## SavedVariablesPerCharacter: WoWFarmerCharSaved
