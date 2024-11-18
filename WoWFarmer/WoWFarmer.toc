@@ -13,3 +13,4 @@ SessionManager.lua
 UIHandler.lua
 DataManager.lua
 SettingsManager.lua
+DefaultData.lua
